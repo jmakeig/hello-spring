@@ -8,8 +8,13 @@ import org.w3c.dom.Document;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DocumentIdentifier;
+import com.marklogic.client.QueryManager;
 import com.marklogic.client.XMLDocumentManager;
+import com.marklogic.client.config.MatchDocumentSummary;
+import com.marklogic.client.config.StringQueryDefinition;
+import com.marklogic.client.impl.StringQueryDefinitionImpl;
 import com.marklogic.client.io.DOMHandle;
+import com.marklogic.client.io.SearchHandle;
 
 public class KnowledgeBase {
     private DatabaseClient db;
@@ -20,38 +25,27 @@ public class KnowledgeBase {
     }
 
     public Entry loadEntry(String id) {
-        XMLDocumentManager docMgr = this.db.newXMLDocumentManager();
-        DocumentIdentifier docId = this.db.newDocId("ASDF.xml");
-        DOMHandle handle = new DOMHandle();
-        docMgr.read(docId, handle);
-        Document document = handle.get();
+        return this.loadEntry(this.db.newDocId(id));
+    }
 
-        return new Entry();
+    protected Entry loadEntry(DocumentIdentifier id) {
+        Document doc = this.db.newXMLDocumentManager().read(id, new DOMHandle()).get();
+        return new Entry(doc.getDocumentElement().getTextContent());
     }
 
     public List<Entry> findEntries(final String query) {
 
-        /*
-         * QueryManager queryMgr = this.db.newQueryManager();
-         * StringQueryDefinition queryDef = queryMgr.newStringDefinition(query);
-         * SearchHandle results = queryMgr.search(queryDef, new SearchHandle());
-         * 
-         * List<Entry> list = new ArrayList<Entry>(); for (MatchDocumentSummary
-         * docSummary : results.getMatchResults()) { Entry entry = new Entry();
-         * entry.setAuthor(docSummary.getUri()); list.add(entry); } return list;
-         */
-        XMLDocumentManager docMgr = this.db.newXMLDocumentManager();
-        DocumentIdentifier docId = this.db.newDocId("ASDF.xml");
-        DOMHandle handle = new DOMHandle();
-        docMgr.read(docId, handle);
-        Document document = handle.get();
+        QueryManager queryMgr = this.db.newQueryManager();
+        // null == default options
+        StringQueryDefinition queryDef = queryMgr.newStringDefinition(null);
+        queryDef.setCriteria(query);
+        SearchHandle results = queryMgr.search(queryDef, new SearchHandle());
 
         List<Entry> list = new ArrayList<Entry>();
-        Entry e = new Entry();
-        e.setAuthor(document.getDocumentElement().getLocalName());
-        list.add(e);
+        for (MatchDocumentSummary docSummary : results.getMatchResults()) {
+            list.add(this.loadEntry(docSummary));
+        }
         return list;
-
     }
 
     public void storeEntry(Entry entry) {

@@ -6,9 +6,13 @@
 </head>
 <body>
 	<h1>Hello world!</h1>
+	<form action="/hello-spring/" method="get">
+		<input type="search" name="q" value=""/>
+		<button>Search</button>
+	</form>
 	<ol>
 	<c:forEach var="entry" items="${entries}">
-		<li><c:out value="${entry.author}"/></li>
+		<li><c:out value="${entry.title}"/></li>
 	</c:forEach>
 	</ol>
 </body>

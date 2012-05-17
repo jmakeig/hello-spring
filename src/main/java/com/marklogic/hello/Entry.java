@@ -1,32 +1,41 @@
 package com.marklogic.hello;
 
 public class Entry {
-	private String author;
-	private String title;
-	private String text;
+    private String author;
+    private String title;
+    private String text;
 
-	public String getAuthor() {
-		return author;
-	}
+    public Entry() {
+        super();
+    }
 
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+    public Entry(String title) {
+        super();
+        this.title = title;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getAuthor() {
+        return author;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
 }
