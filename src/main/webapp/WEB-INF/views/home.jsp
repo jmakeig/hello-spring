@@ -6,6 +6,10 @@
 </head>
 <body>
 	<h1>Hello world!</h1>
-	<p>The time on the server is ${doc}, yo. </P>
+	<ol>
+	<c:forEach var="entry" items="${entries}">
+		<li><c:out value="${entry.author}"/></li>
+	</c:forEach>
+	</ol>
 </body>
 </html>
