@@ -9,10 +9,8 @@ import org.w3c.dom.Document;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DocumentIdentifier;
 import com.marklogic.client.QueryManager;
-import com.marklogic.client.XMLDocumentManager;
 import com.marklogic.client.config.MatchDocumentSummary;
 import com.marklogic.client.config.StringQueryDefinition;
-import com.marklogic.client.impl.StringQueryDefinitionImpl;
 import com.marklogic.client.io.DOMHandle;
 import com.marklogic.client.io.SearchHandle;
 

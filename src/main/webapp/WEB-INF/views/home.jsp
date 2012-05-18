@@ -7,7 +7,7 @@
 <body>
 	<h1>Hello world!</h1>
 	<form action="/hello-spring/" method="get">
-		<input type="search" name="q" value=""/>
+		<input type="search" name="q" value="${query}"/>
 		<button>Search</button>
 	</form>
 	<ol>

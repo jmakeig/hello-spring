@@ -1,7 +1,6 @@
 package com.marklogic.hello;
 
 import java.util.List;
-import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +30,11 @@ public class HomeController {
      * Simply selects the home view to render by returning its name.
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(Model model, @RequestParam String q) {
+    public String home(Model model, @RequestParam(value = "q", defaultValue = "") String query) {
 
-        List<Entry> entries = kb.findEntries(q);
+        List<Entry> entries = kb.findEntries(query);
         model.addAttribute("entries", entries);
+        model.addAttribute("query", query);
         return "home"; // view name
     }
 
