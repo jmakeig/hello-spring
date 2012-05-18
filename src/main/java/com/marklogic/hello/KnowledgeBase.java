@@ -28,7 +28,9 @@ public class KnowledgeBase {
 
     protected Entry loadEntry(DocumentIdentifier id) {
         Document doc = this.db.newXMLDocumentManager().read(id, new DOMHandle()).get();
-        return new Entry(doc.getDocumentElement().getTextContent());
+        Entry entry = new Entry();
+        entry.setText(doc.getElementsByTagName("text").item(0).getTextContent());
+        return entry;
     }
 
     public List<Entry> findEntries(final String query) {

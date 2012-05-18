@@ -12,7 +12,7 @@
 	</form>
 	<ol>
 	<c:forEach var="entry" items="${entries}">
-		<li><c:out value="${entry.title}"/></li>
+		<li><c:out value="${entry.text}"/></li>
 	</c:forEach>
 	</ol>
 </body>
