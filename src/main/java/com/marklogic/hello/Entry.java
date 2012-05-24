@@ -1,9 +1,12 @@
 package com.marklogic.hello;
 
+import java.util.Date;
+
 public class Entry {
     private String author;
     private String title;
-    private String text;
+    private String description;
+    private Date submissionDate;
 
     public Entry() {
         super();
@@ -30,12 +33,20 @@ public class Entry {
         this.title = title;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String text) {
+        this.description = text;
+    }
+
+    public Date getSubmissionDate() {
+        return submissionDate;
+    }
+
+    public void setSubmissionDate(Date submissionDate) {
+        this.submissionDate = submissionDate;
     }
 
 }
