@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>Hello world!</h1>
-	<form action="/hello-spring/" method="get">
+	<form action="/hello-spring/entries" method="get">
 		<input type="search" name="q" value="${query}"/>
 		<button>Search</button>
 	</form>

@@ -3,6 +3,7 @@ package com.marklogic.hello;
 import java.util.Date;
 
 public class Entry {
+    private String id;
     private String author;
     private String title;
     private String description;
@@ -15,6 +16,10 @@ public class Entry {
     public Entry(String title) {
         super();
         this.title = title;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getAuthor() {
