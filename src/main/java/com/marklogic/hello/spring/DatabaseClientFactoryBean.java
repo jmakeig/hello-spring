@@ -13,7 +13,7 @@ public class DatabaseClientFactoryBean implements FactoryBean<DatabaseClient> {
 	private String password;
 
 	public DatabaseClient getObject() throws Exception {
-		return DatabaseClientFactory.connect("localhost", 8003, "admin",
+		return DatabaseClientFactory.newClient("localhost", 8003, "admin",
 				"admin", Authentication.DIGEST);
 	}
 
